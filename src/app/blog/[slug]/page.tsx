@@ -9,7 +9,7 @@ interface BlogPostTemplateProps {
 }
 
 
-export const BlogPostTemplate = (props: BlogPostTemplateProps) => {
+const BlogPostTemplate = (props: BlogPostTemplateProps) => {
     console.log("props", props.params)
     const post = getPostBySlug(props.params.slug)
     
