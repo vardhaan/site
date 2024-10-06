@@ -1,4 +1,4 @@
-import fs, { readdirSync } from "fs";
+import fs from "fs";
 import path from "path";
 import matter from "gray-matter";
 
@@ -8,6 +8,7 @@ console.log(blogDirectory)
 
 export interface BlogPostIdentifier {
     id: string;
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     data: { [key: string]: any }
 }
 

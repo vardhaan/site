@@ -1,15 +1,11 @@
 import Link from "next/link";
-import { BlogPostIdentifier, getBlogPosts, slugToHref } from "../lib/blog";
+import { getBlogPosts, slugToHref } from "../lib/blog";
 import { Box, Typography } from "@mui/material";
-import { useState } from "react";
 import { workPostsSortedFave } from "./workWriting";
 
-interface BlogPageProps {
 
-}
-
-const BlogPage = (props: BlogPageProps) => {
-
+const BlogPage = () => {
+    // Keeping props for future use
     const blogPosts = getBlogPosts();
     const descChronOrderBlogPosts = blogPosts.sort((a, b) => {
         const aDate = new Date(a.data.datePublished)
@@ -34,7 +30,7 @@ const BlogPage = (props: BlogPageProps) => {
 
                     {descChronOrderBlogPosts.map(blogPost => {
                         return (
-                            <Box my={1}>
+                            <Box my={1} key={blogPost.data.slug}>
                                 <Link href={slugToHref(blogPost.data.slug)}>
                                     <BlogLinkDisplay
                                         slug={blogPost.data.slug}
@@ -53,9 +49,9 @@ const BlogPage = (props: BlogPageProps) => {
                     <Typography variant={"h6"} sx={{ fontStyle: "italic" }} gutterBottom>
                         Note: written while at <span><a href="https://www.copytree.io/">Copytree</a></span>
                     </Typography>
-                    {workPostsSortedFave.map(workPost => {
+                    {workPosts.map(workPost => {
                         return (
-                            <Box my={1}>
+                            <Box my={1} key={workPost.slug}>
                                 <a href={workPost.slug}>
                                     <BlogLinkDisplay
                                         slug={workPost.slug}

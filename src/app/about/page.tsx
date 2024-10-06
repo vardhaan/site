@@ -22,7 +22,7 @@ const Page = () => {
                         - Was an APM at Google. Worked on safety for <a href="https://arxiv.org/abs/2201.08239">LaMDA</a> in Assistant + more
                     </li>
                     <li>
-                        - Pizza 👍, love my Ooni. John's of Bleecker 🐐, but Outta Sight in SF is awesome too
+                        - Pizza 👍, love my Ooni. Johns of Bleecker 🐐, but Outta Sight in SF is awesome too
                     </li>
                     <li>
                         - todo: add more info + a pic
