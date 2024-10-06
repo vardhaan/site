@@ -1,0 +1,25 @@
+---
+title: "[WIP Experiment] Can we improve LLM ToT creativity with BVSR?"
+datePublished: "2024-10-06"
+slug: "llm-tot-bvsr"
+---
+
+## Enhancing LLM ToT creativity via BVSR?
+Can we use the [BVSR theory of human creativity](https://www.tandfonline.com/doi/full/10.1080/10400419.2022.2059919#d1e527) to improve LLM creativity, specifically in [Tree of Thoughts](https://www.promptingguide.ai/techniques/tot) (ToT)?
+
+My chain of thought:
+
+ - ToT  is how I think humans solve problems. Try going in one direction, fail, learn something from it, then try a new direction. 
+ - The really hard problems require creativity to solve. Maybe a crazy assumption that actually holds, or a completely different way of looking at it. The straightforward, logical ways likely fail--that's why it's so hard.
+ - Some theorize that creativity in humans comes from subconscious processing: our brains constantly trying different combinations of ideas in the background until one of them seems to work and we become suddenly and acutely aware of it. The **eureka** moment. 
+	 - BVSR is this theory. It stands for Blind-Variation and Selective-Retention. In the BV phase, disparate ideas mash together randomly. In the SV phase, some ideas stand out as worth exploring consciously.
+	 - Personal aside: I *get* the BV part. The SV part still eludes me fully.
+ - Tree of Thoughts, as it stands today, focuses entirely on logic. The LLM is looking at the most likely tokens, which are usually the logical ones. We need to add creativity instead, for it to try something new or even random.
+ - BVSR is a way to inject creativity into the LLM in its Tree of Thoughts. We can, at branching points in the ToT, have ideas mashed together and ask the LLM to explore each of them. The idea pairs can be any combination of (random, random), (logical, logical), or (logical, random). Heck, we don't even need to stop at pairs.
+ - The LLM can explore the idea pairs, see if any provide insight, and continue along the tree.
+ - I think it's best to split this into two models:
+	 - The model doing the BV should be a small LLM, maybe Llama3 1B or 7B? All it needs to do is generate random concepts. Advanced reasoning or logic is not necessary at this part.
+	 - The model doing the SR (seeing if there's anything to the idea pair) should be a powerful model. I may try using Llama 70B locally, or even GPT-4o-mini. Could be worth scaling this up to GPT-4o later.
+	 - With this split, the BV model can essentially run all the time since it is much, much smaller and cheaper to run.
+ - I need to come up with test cases and an experiment setup.
+ - Apparently, blindness in BV doesn't imply random. Random -> Blind but not Blind->Random. We can use systematic methods to do variation (my intuition on this is we could pick a topic randomly, but then do variation within that topic systematically. E.g., topic is Geology, but we can systematically go thru ideas within Geology)
