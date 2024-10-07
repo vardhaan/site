@@ -7,6 +7,25 @@ slug: "llm-tot-bvsr"
 ## Enhancing LLM ToT creativity via BVSR?
 Can we use the [BVSR theory of human creativity](https://www.tandfonline.com/doi/full/10.1080/10400419.2022.2059919#d1e527) to improve LLM creativity, specifically in [Tree of Thoughts](https://www.promptingguide.ai/techniques/tot) (ToT)?
 
+Github repo for experiments: https://github.com/vardhaan/tree-of-thoughts
+
+
+#### 10/6/2024 Notes 
+
+- Created a [repo for the experiment](https://github.com/vardhaan/tree-of-thoughts)
+- The main problem I'm working to solve is "Which is greater, 9.9 or 9.11?" Llama 3.1 8B consistently gets this wrong, even with CoT. It thinks because 11>9 => 0.11 > 0.9 => 9.11 > 9.9
+- Messed around with a manual version of ToT and BVSR. It shows promise--Llama 3.1 8B was able to explore a few different options:
+	- Direct comparison of digits didn't work as a method since it still thought 0.11 > 0.9
+	- Multiplying everything by 100 DID work. It figured out 990 > 911, so 9.9 > 9.11
+	- (The above two options didn't require BVSR, they were what the model thought were good approahes to take).
+	- BVSR would induce other ideas. Some were tangentially relevant (as in math-related), like using the Collatz conjecture. Others, like "imagining 9.9 and 9.11 as book titles to see which were more emotionally resonant" were outrageous. Neither option helped the model arrive at the right conclusion but more experiments need to be done!
+- I expect the vast majority of BVSR ideas won't actually help the LLM find an answer to a problem. The one case it does help is all we care about. But I do wonder if this is fallacious thinking.
+- Fun to see the [entropy experiments](https://twitter.com/_xjdr/status/1842352644612120980) happening on X. Starting to think about how they relate here.
+- Added more ideas to the README in the repo, will tackle them
+
+
+#### 10/5/2024 Notes pt. 1
+
 My chain of thought:
 
  - ToT  is how I think humans solve problems. Try going in one direction, fail, learn something from it, then try a new direction. 
